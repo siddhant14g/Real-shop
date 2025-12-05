@@ -13,10 +13,8 @@ const getApiBaseURL = () => {
   if (typeof window !== "undefined" && 
       window.location.hostname !== "localhost" && 
       window.location.hostname !== "127.0.0.1") {
-    // ⚠️ UPDATE THIS with your Render backend URL after deployment
-    // Example: return "https://realshop-backend.onrender.com/api";
-    console.warn("⚠️ Production detected but VITE_API_BASE_URL not set. Update api.js with your backend URL.");
-    return "http://localhost:5000/api"; // Fallback - UPDATE THIS!
+    // Production backend URL (fallback if env variable not set)
+    return "https://realshop-backend-z5v4.onrender.com/api";
   }
   
   // Priority 3: Local development
