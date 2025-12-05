@@ -93,7 +93,6 @@ function ClientDashboard() {
                   <img
                     src={product.imageUrl}
                     alt={product.name}
-                    loading="lazy"
                     className="h-48 w-full object-cover"
                   />
                   <div className="p-4 flex flex-col justify-between flex-grow">
