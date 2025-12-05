@@ -22,7 +22,7 @@ function Register() {
       setLoading(true);
       const res = await api.post("/auth/register", { name, email, password });
       login(res.data.user, res.data.token); // auto-login
-      navigate("/"); // go Home after register
+      navigate("/client-dashboard"); // go Home after register
     } catch (err) {
       alert(err.response?.data?.message || "Registration failed");
     } finally {
