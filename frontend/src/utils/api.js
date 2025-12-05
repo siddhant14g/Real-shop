@@ -1,17 +1,25 @@
 import axios from "axios";
 
-// Use environment variable for production, fallback to localhost for development
+// API Configuration
+// For production: Set VITE_API_BASE_URL in Vercel environment variables
+// Format: https://your-backend.onrender.com/api
 const getApiBaseURL = () => {
-  // Check if we're in production (Vercel)
+  // Priority 1: Environment variable (set in Vercel)
   if (import.meta.env.VITE_API_BASE_URL) {
     return import.meta.env.VITE_API_BASE_URL;
   }
-  // Check if we're on a deployed domain (not localhost)
-  if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-    // This will be set after backend deployment
-    return "https://your-backend-url.onrender.com/api";
+  
+  // Priority 2: Auto-detect production (if not localhost)
+  if (typeof window !== "undefined" && 
+      window.location.hostname !== "localhost" && 
+      window.location.hostname !== "127.0.0.1") {
+    // ⚠️ UPDATE THIS with your Render backend URL after deployment
+    // Example: return "https://realshop-backend.onrender.com/api";
+    console.warn("⚠️ Production detected but VITE_API_BASE_URL not set. Update api.js with your backend URL.");
+    return "http://localhost:5000/api"; // Fallback - UPDATE THIS!
   }
-  // Default to localhost for local development
+  
+  // Priority 3: Local development
   return "http://localhost:5000/api";
 };
 
